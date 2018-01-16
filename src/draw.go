@@ -38,11 +38,7 @@ func (p *Paddle) Draw(r *sdl.Renderer) error {
 	default:
 		return fmt.Errorf("Error: cannot draw paddle, invalid side \"%v\"", p.side)
 	}
-	rect := &sdl.Rect{X: paddleX, Y: paddleY, W: paddleWidth, H: paddleHeight}
-	if err := r.DrawRect(rect); err != nil {
-		return err
-	}
-	if err := r.FillRect(rect); err != nil {
+	if err := r.FillRect(&sdl.Rect{X: paddleX, Y: paddleY, W: paddleWidth, H: paddleHeight}); err != nil {
 		return err
 	}
 	return nil
@@ -51,11 +47,7 @@ func (p *Paddle) Draw(r *sdl.Renderer) error {
 func (b *Ball) Draw(r *sdl.Renderer) error {
 	var ballX int32 = b.x - (ballSize / 2)
 	var ballY int32 = b.y - (ballSize / 2)
-	rect := &sdl.Rect{X: ballX, Y: ballY, W: ballSize, H: ballSize}
-	if err := r.DrawRect(rect); err != nil {
-		return err
-	}
-	if err := r.FillRect(rect); err != nil {
+	if err := r.FillRect(&sdl.Rect{X: ballX, Y: ballY, W: ballSize, H: ballSize}); err != nil {
 		return err
 	}
 	return nil
